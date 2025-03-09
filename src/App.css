@@ -1,38 +1,245 @@
-.App {
-  text-align: center;
+/* CSS Variables for Light Mode (default) */
+:root {
+  --background-color: #ECE2D0;
+  --text-color: #000;
+  --flashcard-bg-color: #fff;
+  --flashcard-front-color: #559adf;
+  --flashcard-back-color: #eaa453;
+  --button-bg-color: #2e86de;
+  --button-text-color: #fff;
+  --input-bg-color: #fff;
+  --input-text-color: #000;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Dark Mode Variables */
+.dark-mode {
+  --background-color: #2f2c5f;
+  --text-color: #ecf0f1;
+  --flashcard-bg-color: #34495e;
+  --flashcard-front-color: #1b6596;
+  --flashcard-back-color: #bd6315;
+  --button-bg-color: #2980b9;
+  --button-text-color: #ecf0f1;
+  --input-bg-color: #57728e;
+  --input-text-color: #fff;
+  --placeholder-text-color: rgb(0, 0, 0);
+
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  height: 100%;
+  font-family: 'calibri', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
 }
 
-.App-header {
-  background-color: #282c34;
+.app {
+  background-color: var(--background-color);
+  color: var(--text-color);
   min-height: 100vh;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+h1 {
+  text-decoration: underline;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.flashcard-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.flashcard-form input {
+  padding: 10px;
+  margin: 5px;
+  font-size: 16px;
+  border: 1px solid var(--button-bg-color);
+  border-radius: 5px;
+  width: 250px;
+  background-color: var(--input-bg-color);
+  color: var(--input-text-color);
+}
+
+.flashcard-form button {
+  padding: 10px 20px;
+  margin-top: 10px;
+  background-color: var(--button-bg-color);
+  color: var(--button-text-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+::placeholder {
+  color: var(--placeholder-text-color);
+  opacity: 0.5;
+}
+
+.flashcard-container {
+  width: 600px;
+  height: 400px;
+  perspective: 1000px;
+  margin-top: 100px;
+}
+
+.flashcard {
+  width: 600px;
+  height: 300px;
+  background-color: var(--flashcard-bg-color);
+  box-shadow: 30px 10px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  font-size: 35px;
+  border-radius: 10px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+
+.flashcard.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.flashcard-side {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.flashcard-front {
+  background-color: var(--flashcard-front-color);
+  color: var(--text-color);
+}
+
+.flashcard-back {
+  background-color: var(--flashcard-back-color);
+  color: var(--text-color);
+  transform: rotateY(180deg);
+}
+
+.corner-label {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 5px 8px;
+  border-radius: 4px;
+  pointer-events: none; /* Prevent interaction */
+}
+
+.flashcard-front .corner-label {
+  background: rgba(255, 223, 0, 0.9);
+  border: 1px black solid; /* Yellow for question */
+  color: black;
+}
+
+.flashcard-back .corner-label {
+  background: rgba(0, 128, 0, 0.9);
+  border: 1px black solid; /* Green for answer */
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+
+.controls {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  width: 600px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+button {
+  padding: 10px 20px;
+  background-color: var(--button-bg-color);
+  color: var(--button-text-color);
+  border: 1px black solid;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0b5282;
+}
+
+#add-flashcard-button {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  margin: 0.5rem 1rem;
+}
+
+#delete-flashcard-button {
+  background-color: rgb(230, 61, 61);
+}
+
+#delete-flashcard-button:hover {
+background-color: #af1c1c;
+}
+
+#dark-mode-toggle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+
+.dark-mode-toggle button:hover {
+  background-color: #21618c;
+}
+
+
+#login-button {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 5rem;
+  padding-right: 5rem;
+  margin-top: 1rem;
+
+  justify-content: center;
+  background-color: #379131;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#login-button:hover {
+  background-color: #177420;
+}
+
+#sign-out-btn {
+  background-color: rgb(255, 242, 0);
+  color: black;
+  position: absolute;
+  top: 60px;
+  right: 10px;
+}
+
+#sign-out-btn:hover {
+  background-color: rgb(224, 224, 14);
 }
