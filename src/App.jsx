@@ -1,4 +1,4 @@
-/* TODO: Add a "stack" feature so you can see a list of flashcards and delete a specific flashcard
+/* TODO: Figure out why the flashcard lags a bit when flipping around
    TODO: Add email verification
 */
 
@@ -42,7 +42,6 @@ const styles = {
     top: '0',
     width: '300px',
     height: '100vh',
-    backgroundColor: 'white',
     boxShadow: '2px 0 5px rgba(0, 0, 0, 0.1)',
     padding: '20px',
     paddingTop: '70px',
@@ -55,19 +54,15 @@ const styles = {
     transform: 'translateX(0)',
   },
   flashcardItem: {
-    backgroundColor: '#f5f5f5',
     padding: '15px',
     borderRadius: '6px',
     marginBottom: '10px',
     cursor: 'pointer',
     transition: 'all 0.2s ease',
-    '&:hover': {
-      backgroundColor: '#e9e9e9',
-    },
   },
   flashcardItemActive: {
     backgroundColor: '#e0e0e0',
-    borderLeft: '4px solid #4a90e2',
+    borderLeft: '6px solid rgb(94, 234, 18)',
   },
   flashcardItemTitle: {
     fontWeight: '500',
@@ -241,14 +236,18 @@ function FlashcardApp() {
         Stack
       </button>
       
-      <div style={{
-        ...styles.sidebar,
-        ...(isStackOpen ? styles.sidebarOpen : {})
-      }}>
+      <div 
+        className={`sidebar ${isDarkMode ? 'dark-mode' : ''}`}
+        style={{
+          ...styles.sidebar,
+          ...(isStackOpen ? styles.sidebarOpen : {})
+        }}
+      >
         <h2 style={{ marginBottom: '20px' }}>Your Flashcards ({flashcards.length})</h2>
         {flashcards.map((flashcard, index) => (
           <div
             key={index}
+            className={`flashcard-item ${isDarkMode ? 'dark-mode' : ''}`}
             style={{
               ...styles.flashcardItem,
               ...(index === currentIndex ? styles.flashcardItemActive : {}),
@@ -271,7 +270,7 @@ function FlashcardApp() {
         ))}
       </div>
 
-      <div style={styles.mainContent}>
+      <div style={styles.mainContent}> 
         <FlashcardsFetcher setFlashcards={setFlashcards} />
         <h1 style={{ fontStyle: "italic", textShadow: "0px 3px 0px yellow" }}>
           FLASHY
