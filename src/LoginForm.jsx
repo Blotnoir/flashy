@@ -52,8 +52,8 @@ const styles = {
   rememberMe: {
     display: "flex",
     alignItems: "center",
-    gap: "8px",
-    marginBottom: "20px",
+    gap: "6px",
+    marginBottom: "10px"
   },
   checkbox: {
     margin: "0",
@@ -80,6 +80,28 @@ const styles = {
       opacity: "0.8"
     },
   },
+  passwordContainer: {
+    position: 'relative',
+    width: '100%',
+  },
+  eyeIcon: {
+    position: 'absolute',
+    right: '12px',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    cursor: 'pointer',
+    background: 'none',
+    border: 'none',
+    fontSize: '20px',
+    color: '#666',
+    padding: '0',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    '&:hover': {
+      color: '#333',
+    },
+  },
 };
 
 export const LoginForm = ({onLogin}) => {
@@ -93,6 +115,7 @@ export const LoginForm = ({onLogin}) => {
     // Check if we have a saved email
     return !!localStorage.getItem('rememberedEmail');
   });
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -160,14 +183,24 @@ export const LoginForm = ({onLogin}) => {
           required
           style={styles.input}
         />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-          required
-          style={styles.input}
-        />
+        <div style={styles.passwordContainer}>
+          <input
+            type={showPassword ? "text" : "password"}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            required
+            style={styles.input}
+          />
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            style={styles.eyeIcon}
+            tabIndex="-1"
+          >
+            <i className={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i>
+          </button>
+        </div>
         <div style={styles.rememberMe}>
           <input 
             type="checkbox" 
