@@ -11,7 +11,6 @@ import { setPersistence, browserLocalPersistence, signInWithEmailAndPassword, on
 import { LoginForm } from "./LoginForm";
 import { SignUp } from "./SignUp";
 import { FlashcardsFetcher } from "./FetchFlashcards";
-import { FlashcardList } from './FlashcardList';
 
 const styles = {
   app: {
@@ -93,7 +92,10 @@ function FlashcardApp() {
   const [isFlipped, setIsFlipped] = useState(false);
   const [newQuestion, setNewQuestion] = useState("");
   const [newAnswer, setNewAnswer] = useState("");
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    const savedMode = localStorage.getItem('darkMode');
+    return savedMode ? JSON.parse(savedMode) : false;
+  });
   const [isSignUp, setIsSignUp] = useState(false);
   const [viewedCards, setViewedCards] = useState(new Set());
   const [isStackOpen, setIsStackOpen] = useState(false);
@@ -137,7 +139,13 @@ function FlashcardApp() {
     }
   };
 
-  const toggleDarkMode = () => setIsDarkMode(!isDarkMode);
+  const toggleDarkMode = () => {
+    setIsDarkMode(prevMode => {
+      const newMode = !prevMode;
+      localStorage.setItem('darkMode', JSON.stringify(newMode));
+      return newMode;
+    });
+  };
 
   // If still loading, show a loading indicator
   if (isLoading) {
