@@ -61,12 +61,15 @@ h1 {
   margin-top: 20px;
   font-size: 3em;
   font-weight: 800;
-  background: linear-gradient(45deg, #2e86de, #eaa453);
+  background: linear-gradient(300deg, #ff0000, #c6c126);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
   animation: titleFloat 3s ease-in-out infinite;
+  padding: 10px 0;
+  line-height: 1.2;
+  height: auto;
 }
 
 @keyframes titleFloat {

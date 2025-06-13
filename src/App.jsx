@@ -280,7 +280,7 @@ function FlashcardApp() {
 
       <div style={styles.mainContent}> 
         <FlashcardsFetcher setFlashcards={setFlashcards} />
-        <h1 style={{ fontStyle: "italic", textShadow: "0px 3px 0px yellow" }}>
+        <h1 style={{ fontStyle: "italic", textShadow: "0px 1px 0px orange", }}>
           FLASHY
         </h1>
         <button id="dark-mode-toggle" onClick={toggleDarkMode}>
