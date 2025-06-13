@@ -84,15 +84,15 @@ h1 {
   align-items: center;
   margin-bottom: 20px;
   margin-top: 20px;
+  width: 100px;
 }
 
 .flashcard-form input {
   padding: 12px;
-  margin: 8px;
+  margin: 8px auto;
   font-size: 16px;
   border: 2px solid var(--button-bg-color);
   border-radius: 8px;
-  width: 280px;
   background-color: var(--input-bg-color);
   color: var(--input-text-color);
   transition: all var(--transition-speed);
@@ -123,7 +123,7 @@ h1 {
   width: 600px;
   height: 400px;
   perspective: 1000px;
-  margin-top: 100px;
+  margin-top: 80px;
 }
 
 .flashcard {
@@ -135,7 +135,7 @@ h1 {
   justify-content: center;
   align-items: center;
   font-size: 35px;
-  border-radius: 15px;
+  border-radius: 10px;
   position: relative;
   transform-style: preserve-3d;
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -170,12 +170,14 @@ h1 {
   background-color: var(--flashcard-front-color);
   color: var(--text-color);
   transform: rotateY(0deg);
+  border-radius: 4px;
 }
 
 .flashcard-back {
   background-color: var(--flashcard-back-color);
   color: var(--text-color);
   transform: rotateY(180deg);
+  border-radius: 4px;
 }
 
 .corner-label {
@@ -243,7 +245,9 @@ button:active {
 #add-flashcard-button {
   padding-top: 4px;
   padding-bottom: 4px;
-  margin: 0.5rem 1rem;
+  margin: 0.5rem auto;
+  width: 140px;
+  display: block;
 }
 
 #delete-flashcard-button {
@@ -298,7 +302,7 @@ background-color: #af1c1c;
 
 .progress-container {
   width: 600px;
-  margin: 20px 0;
+  margin: 30px 0;
   padding: 10px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 10px;

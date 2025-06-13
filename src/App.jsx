@@ -1,5 +1,5 @@
-/* TODO: Figure out why the flashcard lags a bit when flipping around
-   TODO: Add email verification
+/* 
+   TODO: ADD EMAIL VERIFICATION WHEN SIGNING UP (?) firebase
 */
 
 import "./App.css";
@@ -61,7 +61,7 @@ const styles = {
   },
   flashcardItemActive: {
     backgroundColor: '#e0e0e0',
-    borderLeft: '6px solid rgb(94, 234, 18)',
+    borderLeft: '6px solid rgb(18, 148, 234)',
   },
   flashcardItemTitle: {
     fontWeight: '500',
@@ -291,16 +291,19 @@ function FlashcardApp() {
         </button>
         <div>
           <input
+            style={{marginBottom: '10px', width: '200px'}}
             value={newQuestion}
             onChange={(e) => setNewQuestion(e.target.value)}
             placeholder="Enter question"
           />
           <br />
           <input
+            style={{marginBottom: '10px',width: '200px'}}
             value={newAnswer}
             onChange={(e) => setNewAnswer(e.target.value)}
             placeholder="Enter answer"
           />
+          <br></br>
           <button id="add-flashcard-button" onClick={handleAddFlashcard}>
             Add Flashcard
           </button>
