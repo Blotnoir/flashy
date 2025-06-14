@@ -39,7 +39,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  
+  min-height: 100vh;
 }
 
 .app {
@@ -53,6 +53,8 @@ body {
   justify-content: flex-start;
   padding: 20px;
   box-sizing: border-box;
+  position: relative;
+  overflow-x: hidden;
 }
 
 h1 {
