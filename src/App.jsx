@@ -11,6 +11,7 @@ import { setPersistence, browserLocalPersistence, signInWithEmailAndPassword, on
 import { LoginForm } from "./LoginForm";
 import { SignUp } from "./SignUp";
 import { FlashcardsFetcher } from "./FetchFlashcards";
+import trashIcon from "./icons/trash-icon.png";
 
 const styles = {
   app: {
@@ -56,8 +57,10 @@ const styles = {
     padding: '15px',
     borderRadius: '6px',
     marginBottom: '10px',
-    cursor: 'pointer',
     transition: 'all 0.2s ease',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
   flashcardItemActive: {
     backgroundColor: '#e0e0e0',
@@ -74,6 +77,21 @@ const styles = {
     whiteSpace: 'nowrap',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
+  },
+  flashcardDeleteIcon: {
+    marginLeft: '10px',
+    color: '#b71c1c',
+    fontSize: '16px',
+    cursor: 'pointer',
+    background: 'none',
+    border: 'none',
+    outline: 'none',
+    padding: 0,
+    transition: '0.2s',
+    '&:hover': {
+      transform: 'scale(1.9)',
+      backgroundColor: '#000000',
+    },
   },
   mainContent: {
     flex: 1,
@@ -266,21 +284,37 @@ function FlashcardApp() {
               setIsStackOpen(false); // Close the stack when a card is selected
             }}
           >
-            <div style={styles.flashcardItemTitle}>
-              {flashcard.question.substring(0, 30)}
-              {flashcard.question.length > 30 ? '...' : ''}
+            <div style={{flex: 1}}>
+              <div style={styles.flashcardItemTitle}>
+                {flashcard.question.substring(0, 30)}
+                {flashcard.question.length > 30 ? '...' : ''}
+              </div>
+              <div style={styles.flashcardItemPreview}>
+                {flashcard.answer.substring(0, 50)}
+                {flashcard.answer.length > 50 ? '...' : ''}
+              </div>
             </div>
-            <div style={styles.flashcardItemPreview}>
-              {flashcard.answer.substring(0, 50)}
-              {flashcard.answer.length > 50 ? '...' : ''}
-            </div>
+            <button
+              style={styles.flashcardDeleteIcon}
+              title="Delete flashcard"
+              onClick={e => {
+                e.stopPropagation();
+                handleDeleteFlashcard(index);
+              }}
+            >
+              <img 
+                src={trashIcon}
+                alt="Delete" 
+                style={{ width: '24px', height: '24px' }}
+              />
+            </button>
           </div>
         ))}
       </div>
 
       <div style={styles.mainContent}> 
         <FlashcardsFetcher setFlashcards={setFlashcards} />
-        <h1 style={{ fontStyle: "italic", textShadow: "0px 1px 0px orange", }}>
+        <h1>
           FLASHY
         </h1>
         <button id="dark-mode-toggle" onClick={toggleDarkMode}>
