@@ -108,6 +108,13 @@ const styles = {
       transform: 'scale(1.9)',
       backgroundColor: '#000000',
     },
+    cancelEditIcon: {
+      marginLeft: '10px',
+      color: '#b71c1c',
+      fontSize: '16px',
+      cursor: 'pointer',
+      background: 'none',
+    },
   },
   mainContent: {
     flex: 1,
@@ -421,7 +428,7 @@ function FlashcardApp() {
             <button 
               id="cancel-edit-button" 
               onClick={handleCancelEdit}
-              style={{ marginLeft: '10px', backgroundColor: '#dc3545', color: 'white', border: 'none', padding: '8px 16px', borderRadius: '4px', cursor: 'pointer' }}
+              style={{ marginLeft: '55px', backgroundColor: '#dc3545', color: 'white', border: 'none', padding: '8px 16px', borderRadius: '4px', cursor: 'pointer' }}
             >
               Cancel
             </button>
